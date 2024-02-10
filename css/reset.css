@@ -1,0 +1,89 @@
+/*CSS Document*/
+body,
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+table,
+td,
+img,
+div,
+dl,
+dt,
+dd,
+input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*body {font-family: "SimHei","SimSun","楷体";line-height: 1.5;}*/
+img {
+    border: none;
+    vertical-align: middle;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+/*input,select,textarea,button {outline: none;border: none;background: none;font-family: "SimHei","SimSun","楷体"; }*/
+textarea {
+    resize: none;
+}
+h1,h2,h3,h4,h6{
+    font-weight: 400;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+i{
+    font-style: normal;
+}
+p{
+    text-align:justify
+}
+/*清浮动*/
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+body {
+    font-size: 14px;
+    font-family: myFont;
+    line-height: 1.5;
+}
+
+input,
+select,
+textarea,
+button {
+    outline: none;
+    border: none;
+    background: none;
+    font-family: myFont;
+    padding: 0;
+    margin: 0;
+}
+
+@font-face{
+    font-family: myFont;
+    src: url('../../font/Alibaba-PuHuiTi-Heavy.ttf');
+    font-weight: normal;
+}

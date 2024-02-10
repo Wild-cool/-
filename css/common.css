@@ -1,0 +1,24 @@
+.flex {
+    display: flex;
+}
+
+.f-1 {
+    flex: 1;
+}
+
+.f-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.f-between {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
