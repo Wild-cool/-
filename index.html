@@ -17,62 +17,64 @@
     <script src="./js/xlsx.full.min.js"></script>
   </head>
   <body>
-    <div id="app" class="app-container" style="background-image: url("./img/bg.jpg");">
-      <!-- 首页 -->
-      <div class="home" v-if="showHome">
-        <!-- <input ref="uploadRef" id="upload" type="file" accept=".xls,.xlsx" /> -->
-        <img class="title" src="./img/title.png" alt="" />
-        <img class="text" src="./img/text.png" alt="" />
-        <div class="play flex f-center animated bounceIn" @click="handlePlay">
-          <img src="./img/play.png" alt="" />
+    <div id="app">
+      <div class="app-container" style="background-image: url("./img/bg.jpg");">
+        <!-- 首页 -->
+        <div class="home" v-if="showHome">
+          <!-- <input ref="uploadRef" id="upload" type="file" accept=".xls,.xlsx" /> -->
+          <img class="title" src="./img/title.png" alt="" />
+          <img class="text" src="./img/text.png" alt="" />
+          <div class="play flex f-center animated bounceIn" @click="handlePlay">
+            <img src="./img/play.png" alt="" />
+          </div>
         </div>
+        <!-- 开始答题 -->
+        <div class="question-wraper" v-else>
+          <img class="panel" src="./img/panel.png" alt="" />
+          <div class="content">
+            <div class="title">第 {{numberObj[successActive]}} 题</div>
+            <div class="select">
+              <p>{{questionList[questionActive].title}}</p>
+              <ul>
+                <li
+                  v-for="(item,index) in options"
+                  :key="index"
+                  @click="handleSelect(questionList[questionActive].answer == item)"
+                >
+                  {{item}}:<span>{{questionList[questionActive][item]}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="popup" v-if="isAnswer > -1">
+            <!-- 失败 -->
+            <div class="fail" v-if="isAnswer === 0" @click="handlePopup('fail')">
+              <img src="./img/fail.png" alt="" />
+            </div>
+            <!-- 成功 -->
+            <div
+              class="success"
+              v-if="isAnswer === 1"
+              @click="handlePopup('success')"
+            >
+              <img src="./img/success.png" alt="" />
+            </div>
+          </div>
+          <!-- 音频 -->
+          <audio
+            id="successAudio"
+            src="./music/success.mp3"
+            hidden="true"
+          ></audio>
+          <audio id="failAudio" src="./music/fail.mp3" hidden="true"></audio>
+        </div>
+        <!-- 龙 -->
+        <img
+          :class="'long animated ' + (showHome ? 'slideInUp' :'slideOutDown')"
+          src="./img/long.png"
+          alt=""
+        />
       </div>
-      <!-- 开始答题 -->
-      <div class="question-wraper" v-else>
-        <img class="panel" src="./img/panel.png" alt="" />
-        <div class="content">
-          <div class="title">第 {{numberObj[successActive]}} 题</div>
-          <div class="select">
-            <p>{{questionList[questionActive].title}}</p>
-            <ul>
-              <li
-                v-for="(item,index) in options"
-                :key="index"
-                @click="handleSelect(questionList[questionActive].answer == item)"
-              >
-                {{item}}:<span>{{questionList[questionActive][item]}}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="popup" v-if="isAnswer > -1">
-          <!-- 失败 -->
-          <div class="fail" v-if="isAnswer === 0" @click="handlePopup('fail')">
-            <img src="./img/fail.png" alt="" />
-          </div>
-          <!-- 成功 -->
-          <div
-            class="success"
-            v-if="isAnswer === 1"
-            @click="handlePopup('success')"
-          >
-            <img src="./img/success.png" alt="" />
-          </div>
-        </div>
-        <!-- 音频 -->
-        <audio
-          id="successAudio"
-          src="./music/success.mp3"
-          hidden="true"
-        ></audio>
-        <audio id="failAudio" src="./music/fail.mp3" hidden="true"></audio>
-      </div>
-      <!-- 龙 -->
-      <img
-        :class="'long animated ' + (showHome ? 'slideInUp' :'slideOutDown')"
-        src="./img/long.png"
-        alt=""
-      />
     </div>
   </body>
   <script>
