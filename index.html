@@ -15,6 +15,7 @@
     <script src="./js/vue.js"></script>
     <script src="./js/axios.min.js"></script>
     <script src="./js/xlsx.full.min.js"></script>
+    <script src="./xlsx/题库.js"></script>
   </head>
   <body>
     <div id="app">
@@ -166,18 +167,19 @@
         // uploadRef.addEventListener("change", (e) => {
         //   this.getExcelFile(e);
         // });
-        axios
-          .get("/xlsx/题库.xls", { responseType: "arraybuffer" })
-          .then((res) => {
-            const data = new Uint8Array(res.data);
-            const workbook = XLSX.read(data, { type: "array" });
-            const { Sheet1 } = workbook.Sheets; // 获取文档数据
-            debugger
-            this.questionList = XLSX.utils.sheet_to_json(Sheet1);
-          })
-          .catch((err) => {
-            alert(err);
-          });
+        this.questionList = data
+        // axios
+        //   .get("/xlsx/题库.xls", { responseType: "arraybuffer" })
+        //   .then((res) => {
+        //     const data = new Uint8Array(res.data);
+        //     const workbook = XLSX.read(data, { type: "array" });
+        //     const { Sheet1 } = workbook.Sheets; // 获取文档数据
+        //     this.questionList = XLSX.utils.sheet_to_json(Sheet1);
+        //     console.log(JSON.stringify(this.questionList));
+        //   })
+        //   .catch((err) => {
+        //     alert(err);
+        //   });
       },
     });
   </script>
