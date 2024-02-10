@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/index.css" />
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script> -->
-    <script src="./js/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- <script src="./js/vue.js"></script>
     <script src="./js/axios.min.js"></script>
-    <script src="./js/xlsx.full.min.js"></script>
+    <script src="./js/xlsx.full.min.js"></script> -->
   </head>
   <body>
     <div id="app" class="app-container">
       <!-- 首页 -->
       <div class="home" v-if="showHome">
-        <input ref="uploadRef" id="upload" type="file" accept=".xls,.xlsx" />
+        <!-- <input ref="uploadRef" id="upload" type="file" accept=".xls,.xlsx" /> -->
         <img class="title" src="./img/title.png" alt="" />
         <img class="text" src="./img/text.png" alt="" />
         <div class="play flex f-center animated bounceIn" @click="handlePlay">
@@ -160,21 +160,21 @@
         },
       },
       mounted() {
-        const uploadRef = this.$refs.uploadRef
-        uploadRef.addEventListener("change", (e) => {
-          this.getExcelFile(e);
-        });
-        // axios
-        //   .get("/xlsx/题库.xls", { responseType: "arraybuffer" })
-        //   .then((res) => {
-        //     const data = new Uint8Array(res.data);
-        //     const workbook = XLSX.read(data, { type: "array" });
-        //     const { Sheet1 } = workbook.Sheets; // 获取文档数据
-        //     this.questionList = XLSX.utils.sheet_to_json(Sheet1);
-        //   })
-        //   .catch((err) => {
-        //     alert(err);
-        //   });
+        // const uploadRef = this.$refs.uploadRef
+        // uploadRef.addEventListener("change", (e) => {
+        //   this.getExcelFile(e);
+        // });
+        axios
+          .get("/xlsx/题库.xls", { responseType: "arraybuffer" })
+          .then((res) => {
+            const data = new Uint8Array(res.data);
+            const workbook = XLSX.read(data, { type: "array" });
+            const { Sheet1 } = workbook.Sheets; // 获取文档数据
+            this.questionList = XLSX.utils.sheet_to_json(Sheet1);
+          })
+          .catch((err) => {
+            alert(err);
+          });
       },
     });
   </script>
