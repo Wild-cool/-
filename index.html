@@ -170,6 +170,7 @@
             const data = new Uint8Array(res.data);
             const workbook = XLSX.read(data, { type: "array" });
             const { Sheet1 } = workbook.Sheets; // 获取文档数据
+            debugger
             this.questionList = XLSX.utils.sheet_to_json(Sheet1);
           })
           .catch((err) => {
